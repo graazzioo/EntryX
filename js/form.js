@@ -13,6 +13,10 @@
   const phoneInput = document.getElementById("phone");
   const nameErr = document.getElementById("nameErr");
   const phoneErr = document.getElementById("phoneErr");
+  const dateInput = document.getElementById("date");
+  const timeInput = document.getElementById("time");
+  const dateErr = document.getElementById("dateErr");
+  const timeErr = document.getElementById("timeErr");
   const tariffSel = document.getElementById("tariffSel");
   const status = document.getElementById("formStatus");
   const reduceMotionMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -53,6 +57,27 @@
     }
   });
 
+  dateInput.addEventListener("input", function () {
+    if (dateInput.getAttribute("aria-invalid") === "true") {
+      clearError(dateInput, dateErr);
+    }
+  });
+
+  timeInput.addEventListener("input", function () {
+    if (timeInput.getAttribute("aria-invalid") === "true") {
+      clearError(timeInput, timeErr);
+    }
+  });
+
+  /* ---------- Проверка даты (не в прошлом) ---------- */
+  function isPastDate(value) {
+    if (!value) return false;
+    const day = new Date(value + "T00:00:00");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return day < today;
+  }
+
   /* ---------- Валидация ---------- */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -79,6 +104,23 @@
       ok = false;
     } else {
       clearError(phoneInput, phoneErr);
+    }
+
+    if (!dateInput.value) {
+      showError(dateInput, dateErr, "Выберите дату.", ok);
+      ok = false;
+    } else if (isPastDate(dateInput.value)) {
+      showError(dateInput, dateErr, "Дата не может быть в прошлом.", false);
+      ok = false;
+    } else {
+      clearError(dateInput, dateErr);
+    }
+
+    if (!timeInput.value) {
+      showError(timeInput, timeErr, "Выберите время.", ok);
+      ok = false;
+    } else {
+      clearError(timeInput, timeErr);
     }
 
     if (!ok) return;

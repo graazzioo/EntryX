@@ -66,6 +66,7 @@
           <li><a href="#about">О клубе</a></li>
           <li><a href="#zones">Зоны</a></li>
           <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#equipment">Оборудование</a></li>
           <li><a href="#services">Услуги</a></li>
           <li><a href="#contacts">Контакты</a></li>
         </ul>
@@ -81,6 +82,7 @@
           <li><a href="#about">О клубе</a></li>
           <li><a href="#zones">Зоны</a></li>
           <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#equipment">Оборудование</a></li>
           <li><a href="#services">Услуги</a></li>
           <li><a href="#contacts">Контакты</a></li>
         </ul>
@@ -431,17 +433,37 @@
           <div class="field">
             <label for="tariffSel">Тариф</label>
             <select id="tariffSel" name="tariff">
-              <option>Час игры</option>
-              <option selected>Пакет 3 часа</option>
-              <option>Ночной пакет</option>
+              <option value="Час игры">Час игры</option>
+              <option value="Пакет 3 часа" selected>Пакет 3 часа</option>
+              <option value="Ночной пакет">Ночной пакет</option>
             </select>
           </div>
           <div class="field">
             <label for="zoneSel">Зона</label>
             <select id="zoneSel" name="zone">
-              <option>STANDART</option>
-              <option>VIP</option>
-              <option>SQUAD</option>
+              <option value="STANDART">STANDART</option>
+              <option value="VIP">VIP</option>
+              <option value="SQUAD">SQUAD</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date" required>
+            <span class="err" id="dateErr" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="time">Время</label>
+            <input id="time" name="time" type="time" required>
+            <span class="err" id="timeErr" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="count">Количество мест</label>
+            <select id="count" name="count">
+              <option value="1">1 место</option>
+              <option value="2">2 места</option>
+              <option value="3">3 места</option>
+              <option value="4">4 места</option>
+              <option value="5">5 мест</option>
             </select>
           </div>
           <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
@@ -466,6 +488,7 @@
             <li><a href="#about">О клубе</a></li>
             <li><a href="#zones">Зоны</a></li>
             <li><a href="#tariffs">Тарифы</a></li>
+            <li><a href="#equipment">Оборудование</a></li>
             <li><a href="#faq">Вопросы</a></li>
           </ul>
         </div>
@@ -488,5 +511,12 @@
       <p class="copy">© <span data-year>2026</span> EntryX. Все права защищены. Контент страницы — демонстрационный.</p>
     </div>
   </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5"/>
+      <path d="m5 12 7-7 7 7"/>
+    </svg>
+  </button>
 </body>
 </html>

@@ -624,12 +624,47 @@ body.menu-open {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   font: inherit;
+  color-scheme: dark;
   transition: border-color var(--t-fast);
 }
 
 .field input:hover,
 .field select:hover {
   border-color: #3a414d;
+}
+
+/* Единое выравнивание правых индикаторов:
+   стрелки селектов и иконки календаря/часов в одну линию */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A3ACB9' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+  padding-right: 2.55rem;
+}
+
+.field input[type="date"],
+.field input[type="time"] {
+  position: relative;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator,
+.field input[type="time"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity var(--t-fast);
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator:hover,
+.field input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 .field input:focus-visible,
@@ -711,4 +746,41 @@ body.menu-open {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+/* ================= КНОПКА «НАВЕРХ» ================= */
+.to-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, calc(1rem + env(safe-area-inset-bottom)));
+  z-index: 60;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity var(--t-normal), transform var(--t-normal),
+    border-color var(--t-normal), color var(--t-normal);
+}
+
+.to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
 }
