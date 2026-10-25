@@ -1,0 +1,66 @@
+/* ============================================================
+   EntryX — дизайн-токены и шрифты
+   Self-hosted Inter (woff2, кириллица + латиница, subset)
+   ============================================================ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter/inter-v20-cyrillic_latin-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter/inter-v20-cyrillic_latin-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter/inter-v20-cyrillic_latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter/inter-v20-cyrillic_latin-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Цвета */
+  --bg: #090B0F;
+  --surface: #12151B;
+  --surface-2: #1A1E26;
+  --line: #262B35;
+  --text: #F4F6F8;
+  --muted: #A3ACB9;
+  --accent: #C6FF3D;
+  --accent-ink: #0B1200;
+  --error: #FF8A8A;
+
+  /* Геометрия */
+  --radius: 12px;
+  --radius-lg: 18px;
+  --gap: clamp(1rem, 2.5vw, 1.5rem);
+  --pad-x: clamp(1rem, 4vw, 2rem);
+  --section-y: clamp(3.5rem, 9vw, 7rem);
+  --max: 1240px;
+  --header-h: 64px;
+  --header-bg: rgba(9, 11, 15, 0.92);
+
+  /* Шрифт */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Движение */
+  --t-fast: 0.15s ease;
+  --t-normal: 0.2s ease;
+}

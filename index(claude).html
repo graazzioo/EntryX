@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EntryX — компьютерный клуб для тех, кто играет всерьёз</title>
+<meta name="description" content="EntryX — компьютерный клуб для школьников, студентов и молодёжи: игровые зоны, командные места, тарифы и турнирная атмосфера.">
+<meta name="theme-color" content="#090B0F">
+<style>
+/* ===== Переменные ===== */
+:root{
+  --bg:#090B0F; --surface:#12151B; --surface-2:#1A1E26; --line:#262B35;
+  --text:#F4F6F8; --muted:#A3ACB9; --accent:#C6FF3D; --accent-ink:#0B1200;
+  --radius:12px; --radius-lg:18px;
+  --gap:clamp(1rem,2.5vw,1.5rem); --pad-x:clamp(1rem,4vw,2rem);
+  --section-y:clamp(3.5rem,9vw,7rem); --max:1240px; --header-h:64px;
+  --font:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:1rem;line-height:1.6;overflow-x:hidden;
+  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{line-height:1.08;margin:0;font-weight:800;letter-spacing:-.02em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding-inline:var(--pad-x)}
+section{padding-block:var(--section-y)}
+.sec-head{max-width:46rem;margin-bottom:clamp(1.75rem,4vw,3rem)}
+.sec-head h2{font-size:clamp(1.9rem,5.5vw,3.25rem)}
+.sec-head p{color:var(--muted);margin-top:.9rem;max-width:60ch}
+.demo-note{display:inline-block;margin-top:1rem;padding:.35rem .75rem;border:1px dashed var(--line);border-radius:999px;color:var(--muted);font-size:.875rem}
+
+/* ===== Кнопки ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.5rem;border-radius:var(--radius);
+  border:2px solid transparent;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .15s,background .15s,border-color .15s,color .15s}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#d8ff74}
+.btn-ghost{border-color:var(--line);color:var(--text);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-block{width:100%}
+
+/* ===== Шапка ===== */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(9,11,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:var(--header-h)}
+.logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:900;font-size:1.4rem;letter-spacing:-.03em}
+.logo-x{display:inline-block;width:1em;height:1em;background:var(--accent);
+  clip-path:polygon(0 0,28% 0,50% 36%,72% 0,100% 0,66% 50%,100% 100%,72% 100%,50% 64%,28% 100%,0 100%,34% 50%)}
+.logo b{color:var(--accent)}
+.nav{display:none}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.25rem}
+.nav a{display:block;padding:.6rem .85rem;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:600}
+.nav a:hover{color:var(--text);background:var(--surface)}
+.header-cta{display:none}
+.menu-btn{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:48px;height:48px;padding:0 12px;background:transparent;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer}
+.menu-btn span{height:2px;background:var(--text);border-radius:2px;transition:transform .2s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{display:none;border-top:1px solid var(--line);background:var(--bg);padding:.75rem var(--pad-x) 1.25rem}
+.mobile-nav.open{display:block}
+.mobile-nav ul{list-style:none;margin:0 0 1rem;padding:0}
+.mobile-nav a:not(.btn){display:block;padding:.9rem .25rem;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;font-size:1.1rem}
+@media (min-width:900px){
+  .nav,.header-cta{display:block}.header-cta{display:inline-flex}
+  .menu-btn,.mobile-nav{display:none!important}
+}
+
+/* ===== Hero ===== */
+.hero{padding-block:clamp(2.5rem,7vw,5rem) clamp(3rem,7vw,5.5rem);position:relative;overflow:hidden;
+  background:radial-gradient(60% 50% at 85% 20%,rgba(198,255,61,.09),transparent 70%)}
+.hero-grid{display:grid;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(2.6rem,10vw,5.6rem);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{margin-top:1.25rem;color:var(--muted);font-size:clamp(1.05rem,2.4vw,1.25rem);max-width:52ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.hero-actions .btn{flex:1 1 200px}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:2rem 0 0;padding:1.25rem 0 0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-weight:600}
+.facts li{position:relative;padding-left:1rem}
+.facts li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;background:var(--accent);border-radius:50%}
+.hero-art{position:relative;aspect-ratio:1/1;max-width:440px;width:100%;margin-inline:auto;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
+  background:linear-gradient(160deg,var(--surface-2),var(--surface));display:grid;place-items:center}
+.hero-art::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.45}
+.hero-art .big-x{position:relative;width:68%;aspect-ratio:1;background:var(--accent);
+  clip-path:polygon(0 0,28% 0,50% 36%,72% 0,100% 0,66% 50%,100% 100%,72% 100%,50% 64%,28% 100%,0 100%,34% 50%);
+  filter:drop-shadow(0 0 28px rgba(198,255,61,.35))}
+.hero-art .tag{position:absolute;left:1rem;bottom:1rem;right:1rem;display:flex;justify-content:space-between;gap:.5rem;font-size:.85rem;color:var(--muted)}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.25fr .75fr}}
+
+/* ===== Карточки и сетки ===== */
+.grid{display:grid;gap:var(--gap)}
+.cols-2{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.cols-3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.25rem,3vw,1.75rem);transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--accent)}
+.card h3{font-size:1.25rem;margin-bottom:.6rem}
+.card p{color:var(--muted)}
+.mark{width:2.25rem;height:.35rem;background:var(--accent);border-radius:2px;margin-bottom:1.1rem}
+
+/* ===== Зоны ===== */
+.zone{display:flex;flex-direction:column;gap:1rem}
+.zone .meta{font-size:.9rem;color:var(--accent);font-weight:600}
+.zone .btn{margin-top:auto}
+
+/* ===== Тарифы ===== */
+.tariff{display:flex;flex-direction:column;gap:1rem;position:relative}
+.tariff .price{font-size:clamp(2.2rem,6vw,3rem);font-weight:900;letter-spacing:-.03em}
+.tariff .price small{font-size:1rem;font-weight:600;color:var(--muted);letter-spacing:0}
+.tariff ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;color:var(--muted)}
+.tariff li{padding-left:1.25rem;position:relative}
+.tariff li::before{content:"";position:absolute;left:0;top:.6em;width:.55rem;height:.3rem;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg) translateY(-30%)}
+.tariff .btn{margin-top:auto}
+.tariff.popular{border:2px solid var(--accent);background:linear-gradient(180deg,rgba(198,255,61,.09),var(--surface) 55%)}
+.badge{position:absolute;top:-.8rem;right:1rem;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:.85rem;padding:.25rem .8rem;border-radius:999px}
+.tariff.night{background:var(--surface-2)}
+
+/* ===== Оборудование ===== */
+.spec-list{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.spec{display:grid;gap:.35rem;padding:1.15rem clamp(1rem,3vw,1.75rem);background:var(--surface);border-bottom:1px solid var(--line)}
+.spec:last-child{border-bottom:0}
+.spec dt{font-weight:800;font-size:1.1rem}
+.spec dd{margin:0;color:var(--muted)}
+.spec dd i{font-style:normal;color:var(--accent)}
+@media (min-width:760px){.spec{grid-template-columns:240px 1fr;align-items:baseline}}
+
+/* ===== Меню ===== */
+.menu-cat h3{font-size:1.15rem}
+.menu-cat ul{margin:.75rem 0 0;padding:0;list-style:none;color:var(--muted);display:grid;gap:.35rem}
+.notice{margin-top:var(--gap);padding:1.25rem 1.5rem;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);background:var(--surface);color:var(--muted)}
+.notice strong{color:var(--text)}
+
+/* ===== Комьюнити ===== */
+.community{background:var(--surface);border-block:1px solid var(--line);position:relative;overflow:hidden}
+.community::after{content:"";position:absolute;right:-8%;top:50%;width:min(60vw,520px);aspect-ratio:1;transform:translateY(-50%);background:var(--accent);opacity:.06;
+  clip-path:polygon(0 0,28% 0,50% 36%,72% 0,100% 0,66% 50%,100% 100%,72% 100%,50% 64%,28% 100%,0 100%,34% 50%);pointer-events:none}
+.community .wrap{position:relative;z-index:1}
+.community h2{font-size:clamp(2rem,6.5vw,4rem);max-width:16ch}
+.community p.lead{color:var(--muted);margin-top:1rem;max-width:56ch;font-size:1.1rem}
+.moments{margin-top:2.25rem}
+.moment{border-top:2px solid var(--accent);padding-top:1rem}
+.moment h3{font-size:1.15rem;margin-bottom:.4rem}
+.moment p{color:var(--muted)}
+
+/* ===== FAQ ===== */
+.faq{max-width:52rem;display:grid;gap:.75rem}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.faq details[open]{border-color:var(--accent)}
+.faq summary{list-style:none;cursor:pointer;padding:1.1rem 3.25rem 1.1rem 1.25rem;font-weight:700;position:relative;min-height:48px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:1.25rem;top:50%;transform:translateY(-50%);font-size:1.5rem;color:var(--accent);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 1.25rem 1.25rem;color:var(--muted)}
+
+/* ===== Контакты ===== */
+.contact-grid{display:grid;gap:clamp(1.5rem,4vw,3rem)}
+@media (min-width:900px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-info h2{font-size:clamp(2rem,6vw,3.5rem)}
+.contact-info>p{color:var(--muted);margin-top:1rem;max-width:46ch}
+.info-list{margin:1.75rem 0 0;padding:0;list-style:none;display:grid;gap:1rem}
+.info-list span{display:block;color:var(--muted);font-size:.9rem}
+.info-list strong{font-size:1.1rem}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(1.25rem,3vw,2rem);display:grid;gap:1rem;align-content:start}
+.form h3{font-size:1.4rem}
+.field{display:grid;gap:.4rem}
+.field label{font-weight:600;font-size:.95rem}
+.field input,.field select{width:100%;min-height:48px;padding:.65rem .9rem;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:var(--radius);font:inherit}
+.field input:hover,.field select:hover{border-color:#3a414d}
+.field input:focus-visible,.field select:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field .err{color:#ff8a8a;font-size:.875rem;min-height:1.1em}
+.form .small{color:var(--muted);font-size:.875rem}
+.form-status{padding:1rem;border-radius:var(--radius);border:1px solid var(--accent);background:rgba(198,255,61,.08)}
+.form-status[hidden]{display:none}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--line);padding-block:2.5rem calc(2rem + env(safe-area-inset-bottom))}
+.foot{display:grid;gap:1.75rem}
+@media (min-width:800px){.foot{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.foot h4{margin:0 0 .75rem;font-size:1rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.4rem;color:var(--muted)}
+.foot a{text-decoration:none;color:var(--muted)}
+.foot a:hover{color:var(--accent)}
+.foot .about{color:var(--muted);margin-top:.75rem;max-width:30ch}
+.copy{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.875rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.75rem 1rem;z-index:100;font-weight:700}
+.skip:focus{left:0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="EntryX — на главную"><span class="logo-x" aria-hidden="true"></span>Entry<b>X</b></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="#about">О клубе</a></li>
+        <li><a href="#zones">Зоны</a></li>
+        <li><a href="#tariffs">Тарифы</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary header-cta" href="#booking">Забронировать</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <nav aria-label="Мобильная навигация">
+      <ul>
+        <li><a href="#about">О клубе</a></li>
+        <li><a href="#zones">Зоны</a></li>
+        <li><a href="#tariffs">Тарифы</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary btn-block" href="#booking">Забронировать</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="hero-title">Твоя игра.<br>Твои <em>правила.</em></h1>
+        <p class="lead">EntryX — компьютерный клуб для школьников, студентов и всех, кто играет в CS2, Valorant, Dota 2 и League of Legends. Приходи один или командой.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tariffs">Выбрать тариф</a>
+          <a class="btn btn-ghost" href="#about">Исследовать клуб</a>
+        </div>
+        <ul class="facts" aria-label="Коротко о клубе">
+          <li>Мощное железо</li><li>Комфортные зоны</li><li>Играй с командой</li>
+        </ul>
+      </div>
+      <div class="hero-art" role="img" aria-label="Графический знак EntryX на тёмном фоне с сеткой">
+        <div class="big-x"></div>
+        <div class="tag"><span>Entry</span><span>Level up</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕИМУЩЕСТВА -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="about-title">Всё для долгой катки</h2>
+        <p>Мы собрали в одном месте то, что нужно, чтобы играть без лишних мыслей о железе и неудобствах.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card"><div class="mark"></div><h3>Производительное оборудование</h3><p>ПК и периферия для соревновательных игр. Актуальная конфигурация — в разделе «Оборудование».</p></article>
+        <article class="card"><div class="mark"></div><h3>Удобные игровые места</h3><p>Кресла, место под локти и свет, который не слепит. Можно играть несколько часов подряд.</p></article>
+        <article class="card"><div class="mark"></div><h3>Командная атмосфера</h3><p>Играй с друзьями за соседними местами, обсуждай тактику и находи новых тиммейтов.</p></article>
+        <article class="card"><div class="mark"></div><h3>Дополнительные услуги</h3><p>Напитки и закуски не отрывают от игры. Подробности — в разделе «Услуги».</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗОНЫ -->
+  <section id="zones" aria-labelledby="zones-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="zones-title">Игровые зоны</h2>
+        <p>Выбери формат под своё настроение: одиночная игра, больше комфорта или матч с командой.</p>
+        <span class="demo-note">Примерный контент: уточните реальные зоны клуба</span>
+      </div>
+      <div class="grid cols-3">
+        <article class="card zone"><h3>Стандартная зона</h3><p>Основной зал для рейтинговых матчей и ежедневной игры.</p><span class="meta">Формат: соло или дуо</span><a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a></article>
+        <article class="card zone"><h3>VIP-зона</h3><p>Более тихое пространство с расширенным комфортом для тех, кто ценит концентрацию.</p><span class="meta">Формат: соло, тренировки, стримы</span><a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a></article>
+        <article class="card zone"><h3>Командная зона</h3><p>Места рядом друг с другом, чтобы играть пати из пяти человек и общаться без помех.</p><span class="meta">Формат: команда до 5 человек</span><a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ТАРИФЫ -->
+  <section id="tariffs" aria-labelledby="tariffs-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="tariffs-title">Тарифы</h2>
+        <p>Выбери тариф и сразу переходи к бронированию.</p>
+        <span class="demo-note">Демонстрационные цены — замените на актуальные</span>
+      </div>
+      <div class="grid cols-3">
+        <article class="card tariff">
+          <h3>Час игры</h3>
+          <div class="price" data-edit="price">200 ₽ <small>/ 1 час</small></div>
+          <ul><li>Без привязки к времени суток (условие-пример)</li><li>Подходит, чтобы попробовать клуб</li><li>Можно продлить на месте</li></ul>
+          <button class="btn btn-ghost" type="button" data-tariff="Час игры">Выбрать</button>
+        </article>
+        <article class="card tariff popular">
+          <span class="badge">Популярный</span>
+          <h3>Пакет 3 часа</h3>
+          <div class="price" data-edit="price">500 ₽ <small>/ 3 часа</small></div>
+          <ul><li>Выгоднее почасовой оплаты (пример)</li><li>Хватит на несколько матчей подряд</li><li>Удобно для игры с друзьями</li></ul>
+          <button class="btn btn-primary" type="button" data-tariff="Пакет 3 часа">Выбрать</button>
+        </article>
+        <article class="card tariff night">
+          <h3>Ночной пакет</h3>
+          <div class="price" data-edit="price">900 ₽ <small>/ ночь</small></div>
+          <ul><li>Время действия — уточните у клуба</li><li>Для турниров и долгих сессий</li><li>Лучше бронировать заранее</li></ul>
+          <button class="btn btn-ghost" type="button" data-tariff="Ночной пакет">Выбрать</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОБОРУДОВАНИЕ -->
+  <section id="equipment" aria-labelledby="equip-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="equip-title">Оборудование</h2>
+        <p>Здесь будет актуальная конфигурация клуба.</p>
+        <span class="demo-note">Заглушки: укажите реальные характеристики</span>
+      </div>
+      <dl class="spec-list">
+        <div class="spec"><dt>Компьютеры</dt><dd><i>[указать актуальную конфигурацию: процессор, видеокарта, память]</i></dd></div>
+        <div class="spec"><dt>Мониторы</dt><dd><i>[указать диагональ, разрешение и частоту обновления]</i></dd></div>
+        <div class="spec"><dt>Периферия</dt><dd><i>[указать модели клавиатур, мышей, гарнитур и ковриков]</i></dd></div>
+        <div class="spec"><dt>Игровые кресла</dt><dd><i>[указать модели и особенности]</i></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ И МЕНЮ -->
+  <section id="services" aria-labelledby="services-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="services-title">Услуги и меню</h2>
+        <p>Перекус и напитки, чтобы не прерывать игру.</p>
+        <span class="demo-note">Категории-примеры: позиции и цены добавьте сами</span>
+      </div>
+      <div class="grid cols-2">
+        <article class="card menu-cat"><h3>Снеки</h3><ul><li>[позиция — цена]</li><li>[позиция — цена]</li></ul></article>
+        <article class="card menu-cat"><h3>Горячие закуски</h3><ul><li>[позиция — цена]</li><li>[позиция — цена]</li></ul></article>
+        <article class="card menu-cat"><h3>Прохладительные напитки</h3><ul><li>[позиция — цена]</li><li>[позиция — цена]</li></ul></article>
+        <article class="card menu-cat"><h3>Энергетические напитки</h3><ul><li>[позиция — цена]</li><li>[позиция — цена]</li></ul></article>
+      </div>
+      <p class="notice"><strong>Дополнительная услуга для взрослых (18+).</strong> Блок показывайте, только если услуга действительно доступна в клубе и разрешена местным законодательством. Не предлагается несовершеннолетним. Условия — у администратора.</p>
+    </div>
+  </section>
+
+  <!-- АТМОСФЕРА -->
+  <section class="community" id="community" aria-labelledby="comm-title">
+    <div class="wrap">
+      <h2 id="comm-title">Играй рядом с теми, кто играет так же</h2>
+      <p class="lead">Командные матчи, совместные тренировки и турниры. EntryX — это место, где можно найти пати и вместе расти.</p>
+      <div class="grid cols-3 moments">
+        <div class="moment"><h3>Командные матчи</h3><p>Собирай друзей и играй в одной зоне.</p></div>
+        <div class="moment"><h3>Турниры</h3><p>Анонсы турниров появятся здесь. Формат и даты — заглушка.</p></div>
+        <div class="moment"><h3>Спокойная атмосфера</h3><p>Приглушённый свет, удобные места и уважение к игрокам.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="faq-title">Частые вопросы</h2></div>
+      <div class="faq">
+        <details><summary>Как выбрать тариф?</summary><p>Для знакомства с клубом подойдёт почасовой тариф. Если планируете несколько матчей, посмотрите пакеты. Актуальные условия уточняйте у администратора.</p></details>
+        <details><summary>Можно ли прийти командой?</summary><p>Да, для этого есть командная зона. Чтобы места оказались рядом, лучше забронировать заранее.</p></details>
+        <details><summary>Нужно ли бронировать место?</summary><p>Не обязательно, но бронь повышает шансы занять нужную зону в загруженное время. Мы не гарантируем свободные места без брони.</p></details>
+        <details><summary>Какие игры доступны?</summary><p>Клуб ориентирован на CS2, Valorant, Dota 2 и League of Legends. Полный список игр уточняйте у администратора.</p></details>
+        <details><summary>Как узнать актуальные цены?</summary><p>Цены на этой странице — демонстрационные. Актуальные тарифы уточняйте по контактам клуба или на месте.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contacts" aria-labelledby="contacts-title" style="padding-top:0">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <h2 id="contacts-title">Приходи в EntryX</h2>
+        <p>Забронируй место или загляни посмотреть клуб.</p>
+        <ul class="info-list">
+          <li><span>Адрес</span><strong>[указать адрес клуба]</strong></li>
+          <li><span>Телефон</span><strong>[указать телефон]</strong></li>
+          <li><span>График работы</span><strong>[указать часы работы]</strong></li>
+        </ul>
+      </div>
+      <form class="form" id="booking" novalidate aria-labelledby="form-title">
+        <h3 id="form-title">Забронировать место</h3>
+        <p class="small">Демонстрационная форма: без серверной части данные никуда не отправляются и не сохраняются.</p>
+        <div class="field"><label for="name">Имя</label><input id="name" name="name" type="text" autocomplete="off" required><span class="err" id="nameErr" aria-live="polite"></span></div>
+        <div class="field">
+          <label for="tariffSel">Тариф</label>
+          <select id="tariffSel" name="tariff"><option>Час игры</option><option selected>Пакет 3 часа</option><option>Ночной пакет</option></select>
+        </div>
+        <div class="field"><label for="zoneSel">Зона</label>
+          <select id="zoneSel" name="zone"><option>Стандартная зона</option><option>VIP-зона</option><option>Командная зона</option></select>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
+        <div class="form-status" id="formStatus" role="status" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top" aria-label="EntryX — наверх"><span class="logo-x" aria-hidden="true"></span>Entry<b>X</b></a>
+        <p class="about">Компьютерный клуб для тех, кто играет всерьёз.</p>
+      </div>
+      <div><h4>Разделы</h4><ul><li><a href="#about">О клубе</a></li><li><a href="#zones">Зоны</a></li><li><a href="#tariffs">Тарифы</a></li><li><a href="#faq">Вопросы</a></li></ul></div>
+      <div><h4>Контакты</h4><ul><li>[указать телефон]</li><li>[указать e-mail]</li><li><a href="#contacts">Адрес и график</a></li></ul></div>
+      <div><h4>Соцсети</h4><ul><li>[ссылка на соцсеть]</li><li>[ссылка на соцсеть]</li></ul></div>
+    </div>
+    <p class="copy">© 2026 EntryX. Все права защищены. Контент страницы — демонстрационный.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var btn=document.getElementById("menuBtn");
+  var nav=document.getElementById("mobileNav");
+  function setMenu(open){
+    nav.classList.toggle("open",open);
+    btn.setAttribute("aria-expanded",String(open));
+    btn.setAttribute("aria-label",open?"Закрыть меню":"Открыть меню");
+  }
+  btn.addEventListener("click",function(){setMenu(btn.getAttribute("aria-expanded")!=="true")});
+  nav.addEventListener("click",function(e){if(e.target.closest("a"))setMenu(false)});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&btn.getAttribute("aria-expanded")==="true"){setMenu(false);btn.focus()}
+  });
+  window.matchMedia("(min-width:900px)").addEventListener("change",function(m){if(m.matches)setMenu(false)});
+
+  var tariffSel=document.getElementById("tariffSel");
+  var form=document.getElementById("booking");
+  document.querySelectorAll("[data-tariff]").forEach(function(b){
+    b.addEventListener("click",function(){
+      tariffSel.value=b.getAttribute("data-tariff");
+      form.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"center"});
+      setTimeout(function(){document.getElementById("name").focus({preventScroll:true})},400);
+    });
+  });
+
+  var nameInput=document.getElementById("name");
+  var nameErr=document.getElementById("nameErr");
+  var status=document.getElementById("formStatus");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    status.hidden=true;
+    var v=nameInput.value.trim();
+    if(!v){
+      nameErr.textContent="Введите имя, чтобы мы знали, как к вам обращаться.";
+      nameInput.setAttribute("aria-invalid","true");
+      nameInput.focus();
+      return;
+    }
+    nameErr.textContent="";
+    nameInput.removeAttribute("aria-invalid");
+    status.textContent="Демо-режим: заявка не отправлена, так как у страницы нет серверной части. Подключите обработчик формы или позвоните в клуб.";
+    status.hidden=false;
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

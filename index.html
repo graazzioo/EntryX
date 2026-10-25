@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EntryX — компьютерный клуб для тех, кто играет всерьёз</title>
+  <meta name="description" content="EntryX — компьютерный клуб: игровые зоны, командные места, тарифы и турнирная атмосфера. CS2, Valorant, Dota 2, League of Legends.">
+  <meta name="theme-color" content="#090B0F">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://entryx.example.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="EntryX">
+  <meta property="og:title" content="EntryX — компьютерный клуб для тех, кто играет всерьёз">
+  <meta property="og:description" content="Игровые зоны, командные места, тарифы и турнирная атмосфера. CS2, Valorant, Dota 2, League of Legends.">
+  <meta property="og:url" content="https://entryx.example.com/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EntryX — компьютерный клуб">
+  <meta name="twitter:description" content="Игровые зоны, командные места, тарифы и турнирная атмосфера.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Self-hosted шрифты: preload основного начертания -->
+  <link rel="preload" href="fonts/inter/inter-v20-cyrillic_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "InternetCafe",
+    "name": "EntryX",
+    "description": "Компьютерный клуб: игровые зоны, командные места, тарифы и турнирная атмосфера.",
+    "url": "https://entryx.example.com/",
+    "telephone": "+7 (495) 123-45-67",
+    "priceRange": "₽₽",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RU",
+      "streetAddress": "ул. Игровая, д. 15, ТЦ «Арена», 2 этаж"
+    },
+    "openingHours": "Mo-Su 00:00-24:00"
+  }
+  </script>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/form.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="logo" href="#top" aria-label="EntryX — на главную">
+        Entry<b>X</b>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="#about">О клубе</a></li>
+          <li><a href="#zones">Зоны</a></li>
+          <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="#booking">Забронировать</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <nav aria-label="Мобильная навигация">
+        <ul>
+          <li><a href="#about">О клубе</a></li>
+          <li><a href="#zones">Зоны</a></li>
+          <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-block" href="#booking">Забронировать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="hero-title">Твоя игра.<br>Твои <em>правила.</em></h1>
+          <p class="lead">EntryX — компьютерный клуб для школьников, студентов и всех, кто играет в CS2, Valorant, Dota 2 и League of Legends. Приходи один или командой.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#tariffs">Выбрать тариф</a>
+            <a class="btn btn-ghost" href="#about">Исследовать клуб</a>
+          </div>
+          <ul class="facts" aria-label="Коротко о клубе">
+            <li>Мощное железо</li>
+            <li>Комфортные зоны</li>
+            <li>Играй с командой</li>
+          </ul>
+        </div>
+        <div class="hero-visual" role="img" aria-label="Игровой зал компьютерного клуба EntryX с рядами мониторов">
+          <img
+            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"
+            srcset="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=480&q=75 480w,
+                    https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=768&q=75 768w,
+                    https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80 900w"
+            sizes="(min-width: 900px) 42vw, 100vw"
+            alt="Игровой зал EntryX с рядами мониторов"
+            width="900" height="620"
+            loading="eager" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="about-title">Всё для долгой катки</h2>
+          <p>Мы собрали в одном месте то, что нужно, чтобы играть без лишних мыслей о железе и неудобствах.</p>
+        </div>
+        <div class="grid cols-2">
+          <article class="card">
+            <div class="mark" aria-hidden="true"></div>
+            <h3>Производительное оборудование</h3>
+            <p>ПК и периферия для соревновательных игр. Актуальная конфигурация — в разделе «Оборудование».</p>
+          </article>
+          <article class="card">
+            <div class="mark" aria-hidden="true"></div>
+            <h3>Удобные игровые места</h3>
+            <p>Кресла, место под локти и свет, который не слепит. Можно играть несколько часов подряд.</p>
+          </article>
+          <article class="card">
+            <div class="mark" aria-hidden="true"></div>
+            <h3>Командная атмосфера</h3>
+            <p>Играй с друзьями за соседними местами, обсуждай тактику и находи новых тиммейтов.</p>
+          </article>
+          <article class="card">
+            <div class="mark" aria-hidden="true"></div>
+            <h3>Дополнительные услуги</h3>
+            <p>Напитки и закуски не отрывают от игры. Подробности — в разделе «Услуги».</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ЗОНЫ -->
+    <section id="zones" aria-labelledby="zones-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="zones-title">Игровые зоны</h2>
+          <p>Три формата на выбор: STANDART для повседневной игры, VIP для максимального комфорта и SQUAD, чтобы играть командой до пяти человек.</p>
+        </div>
+        <div class="grid cols-3">
+          <article class="card zone">
+            <div class="zone-media" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=75"
+                srcset="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=75 400w,
+                        https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=75 700w"
+                sizes="(min-width: 900px) 33vw, 100vw"
+                alt=""
+                width="700" height="440"
+                loading="lazy" decoding="async">
+            </div>
+            <div class="zone-body">
+              <h3>STANDART</h3>
+              <p>Основной зал для рейтинговых матчей и ежедневной игры.</p>
+              <span class="meta">Формат: соло или дуо</span>
+              <a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a>
+            </div>
+          </article>
+          <article class="card zone">
+            <div class="zone-media" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=75"
+                srcset="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=75 400w,
+                        https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=75 700w"
+                sizes="(min-width: 900px) 33vw, 100vw"
+                alt=""
+                width="700" height="440"
+                loading="lazy" decoding="async">
+            </div>
+            <div class="zone-body">
+              <h3>VIP</h3>
+              <p>Более тихое пространство с расширенным комфортом для тех, кто ценит концентрацию.</p>
+              <span class="meta">Формат: соло, тренировки, стримы</span>
+              <a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a>
+            </div>
+          </article>
+          <article class="card zone">
+            <div class="zone-media" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=75"
+                srcset="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=75 400w,
+                        https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=700&q=75 700w"
+                sizes="(min-width: 900px) 33vw, 100vw"
+                alt=""
+                width="700" height="440"
+                loading="lazy" decoding="async">
+            </div>
+            <div class="zone-body">
+              <h3>SQUAD</h3>
+              <p>Места рядом друг с другом, чтобы играть пати из пяти человек и общаться без помех.</p>
+              <span class="meta">Формат: команда до 5 человек</span>
+              <a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТАРИФЫ -->
+    <section id="tariffs" aria-labelledby="tariffs-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="tariffs-title">Тарифы</h2>
+          <p>Выбери тариф и сразу переходи к бронированию. Актуальные условия уточняйте у администратора.</p>
+        </div>
+        <div class="grid cols-3">
+          <article class="card tariff">
+            <h3>Час игры</h3>
+            <div class="price">200 ₽ <small>/ 1 час</small></div>
+            <ul>
+              <li>Без привязки к времени суток</li>
+              <li>Подходит, чтобы попробовать клуб</li>
+              <li>Можно продлить на месте</li>
+            </ul>
+            <button class="btn btn-ghost" type="button" data-tariff="Час игры">Выбрать</button>
+          </article>
+          <article class="card tariff popular">
+            <span class="badge">Популярный</span>
+            <h3>Пакет 3 часа</h3>
+            <div class="price">500 ₽ <small>/ 3 часа</small></div>
+            <ul>
+              <li>Выгоднее почасовой оплаты</li>
+              <li>Хватит на несколько матчей подряд</li>
+              <li>Удобно для игры с друзьями</li>
+            </ul>
+            <button class="btn btn-primary" type="button" data-tariff="Пакет 3 часа">Выбрать</button>
+          </article>
+          <article class="card tariff night">
+            <h3>Ночной пакет</h3>
+            <div class="price">900 ₽ <small>/ ночь</small></div>
+            <ul>
+              <li>Время действия — 00:00–08:00</li>
+              <li>Для турниров и долгих сессий</li>
+              <li>Лучше бронировать заранее</li>
+            </ul>
+            <button class="btn btn-ghost" type="button" data-tariff="Ночной пакет">Выбрать</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОБОРУДОВАНИЕ -->
+    <section id="equipment" aria-labelledby="equip-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="equip-title">Оборудование</h2>
+          <p>На чём играем: актуальное железо во всех зонах, протестированное на соревновательной нагрузке.</p>
+        </div>
+        <dl class="spec-list">
+          <div class="spec">
+            <dt>Компьютеры</dt>
+            <dd>Intel Core i7-13700F, GeForce RTX 4070, 32 ГБ DDR5, SSD 1 ТБ. В зоне VIP — RTX 4080 и 64 ГБ.</dd>
+          </div>
+          <div class="spec">
+            <dt>Мониторы</dt>
+            <dd>27″, QHD, 165–240 Гц, 1 мс, IPS. Модели ZOWIE XL и AOC Q27G2.</dd>
+          </div>
+          <div class="spec">
+            <dt>Периферия</dt>
+            <dd>Механические клавиатуры, мыши Logitech G Pro X Superlight, гарнитуры HyperX Cloud II, коврики XXL.</dd>
+          </div>
+          <div class="spec">
+            <dt>Игровые кресла</dt>
+            <dd>Эргономичные кресла с поддержкой поясницы и регулировкой высоты — DXRacer и Cougar.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- УСЛУГИ И МЕНЮ -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="services-title">Услуги и меню</h2>
+          <p>Перекус и напитки прямо в зале, чтобы не прерывать игру. Что-то ещё — спросите у администратора.</p>
+        </div>
+        <div class="grid cols-2">
+          <article class="card menu-cat">
+            <h3>Снеки</h3>
+            <ul>
+              <li>Чипсы — 120 ₽</li>
+              <li>Шоколадный батончик — 90 ₽</li>
+              <li>Орешки — 110 ₽</li>
+            </ul>
+          </article>
+          <article class="card menu-cat">
+            <h3>Горячие закуски</h3>
+            <ul>
+              <li>Хот-дог — 220 ₽</li>
+              <li>Наггетсы (6 шт.) — 280 ₽</li>
+              <li>Картофель фри — 190 ₽</li>
+            </ul>
+          </article>
+          <article class="card menu-cat">
+            <h3>Прохладительные напитки</h3>
+            <ul>
+              <li>Вода 0,5 л — 100 ₽</li>
+              <li>Кола 0,5 л — 160 ₽</li>
+              <li>Сок 0,3 л — 130 ₽</li>
+            </ul>
+          </article>
+          <article class="card menu-cat">
+            <h3>Энергетические напитки</h3>
+            <ul>
+              <li>Red Bull — 220 ₽</li>
+              <li>Adrenaline Rush — 160 ₽</li>
+              <li>Torque — 140 ₽</li>
+            </ul>
+          </article>
+        </div>
+        <p class="notice">
+          <strong>Дополнительная услуга для взрослых (18+).</strong>
+          Предоставляется только совершеннолетним посетителям. Условия, цена и наличие — у администратора.
+        </p>
+      </div>
+    </section>
+
+    <!-- АТМОСФЕРА -->
+    <section class="community" id="community" aria-labelledby="comm-title">
+      <div class="wrap">
+        <div class="community__visual" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=600&q=75"
+            srcset="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=600&q=75 600w,
+                    https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=900&q=75 900w,
+                    https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="100vw"
+            alt=""
+            width="1200" height="514"
+            loading="lazy" decoding="async">
+        </div>
+        <div class="community__content">
+          <h2 id="comm-title">Играй рядом с теми, кто играет так же</h2>
+          <p class="lead">Командные матчи, совместные тренировки и турниры. EntryX — это место, где можно найти пати и вместе расти.</p>
+          <div class="grid cols-3 moments">
+            <div class="moment">
+              <h3>Командные матчи</h3>
+              <p>Собирай друзей и играй в одной зоне.</p>
+            </div>
+            <div class="moment">
+              <h3>Турниры</h3>
+              <p>Регулярные ивенты и анонсы турниров — в Telegram-канале клуба и у администратора.</p>
+            </div>
+            <div class="moment">
+              <h3>Спокойная атмосфера</h3>
+              <p>Приглушённый свет, удобные места и уважение к игрокам.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="faq-title">Частые вопросы</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Как выбрать тариф?</summary>
+            <p>Для знакомства с клубом подойдёт почасовой тариф. Если планируете несколько матчей, посмотрите пакеты. Актуальные условия уточняйте у администратора.</p>
+          </details>
+          <details>
+            <summary>Можно ли прийти командой?</summary>
+            <p>Да, для этого есть зона SQUAD. Чтобы места оказались рядом, лучше забронировать заранее.</p>
+          </details>
+          <details>
+            <summary>Нужно ли бронировать место?</summary>
+            <p>Не обязательно, но бронь повышает шансы занять нужную зону в загруженное время. Мы не гарантируем свободные места без брони.</p>
+          </details>
+          <details>
+            <summary>Какие игры доступны?</summary>
+            <p>Клуб ориентирован на CS2, Valorant, Dota 2 и League of Legends. Полный список игр уточняйте у администратора.</p>
+          </details>
+          <details>
+            <summary>Как узнать актуальные цены?</summary>
+            <p>Актуальные тарифы и действующие акции уточняйте по контактам клуба или на месте у администратора.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts" aria-labelledby="contacts-title">
+      <div class="wrap contact-grid">
+        <div class="contact-info">
+          <h2 id="contacts-title">Приходи в EntryX</h2>
+          <p>Забронируй место или загляни посмотреть клуб.</p>
+          <ul class="info-list">
+            <li><span>Адрес</span><strong>г. Москва, ул. Игровая, д. 15, ТЦ «Арена», 2 этаж</strong></li>
+            <li><span>Телефон</span><strong><a href="tel:+74951234567">+7 (495) 123-45-67</a></strong></li>
+            <li><span>График работы</span><strong>Ежедневно, круглосуточно (24/7)</strong></li>
+          </ul>
+        </div>
+        <form class="form" id="booking" novalidate aria-labelledby="form-title">
+          <h3 id="form-title">Забронировать место</h3>
+          <p class="small">Демонстрационная форма: без серверной части данные никуда не отправляются и не сохраняются.</p>
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name" minlength="2" required placeholder="Как к вам обращаться">
+            <span class="err" id="nameErr" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__">
+            <span class="err" id="phoneErr" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="tariffSel">Тариф</label>
+            <select id="tariffSel" name="tariff">
+              <option>Час игры</option>
+              <option selected>Пакет 3 часа</option>
+              <option>Ночной пакет</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="zoneSel">Зона</label>
+            <select id="zoneSel" name="zone">
+              <option>STANDART</option>
+              <option>VIP</option>
+              <option>SQUAD</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="logo" href="#top" aria-label="EntryX — наверх">
+            Entry<b>X</b>
+          </a>
+          <p class="about">Компьютерный клуб для тех, кто играет всерьёз.</p>
+        </div>
+        <div>
+          <h4>Разделы</h4>
+          <ul>
+            <li><a href="#about">О клубе</a></li>
+            <li><a href="#zones">Зоны</a></li>
+            <li><a href="#tariffs">Тарифы</a></li>
+            <li><a href="#faq">Вопросы</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li><a href="mailto:info@entryx.ru">info@entryx.ru</a></li>
+            <li><a href="#contacts">Адрес и график</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Соцсети</h4>
+          <ul>
+            <li><a href="https://t.me/entryx" rel="noopener" target="_blank">Telegram</a></li>
+            <li><a href="https://vk.com/entryx" rel="noopener" target="_blank">ВКонтакте</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="copy">© <span data-year>2026</span> EntryX. Все права защищены. Контент страницы — демонстрационный.</p>
+    </div>
+  </footer>
+</body>
+</html>
