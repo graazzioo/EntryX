@@ -86,4 +86,25 @@
       spy.observe(s);
     });
   }
+
+  /* ---------- Кнопка «Наверх» ---------- */
+  const toTop = document.getElementById("toTop");
+  if (toTop) {
+    const reduceMotionMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const showAfter = 480;
+
+    const onScroll = function () {
+      toTop.classList.toggle("show", window.scrollY > showAfter);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    toTop.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotionMQ.matches ? "auto" : "smooth"
+      });
+    });
+  }
 })();
