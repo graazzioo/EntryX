@@ -107,4 +107,34 @@
       });
     });
   }
+
+  /* ---------- Появление блоков при скролле (reveal) ---------- */
+  const revealEls = Array.prototype.slice.call(
+    document.querySelectorAll(
+      ".sec-head, .grid > .card, .spec, .community__visual, " +
+        ".community__content, .faq, .contact-info, .form"
+    )
+  );
+
+  if (revealEls.length && "IntersectionObserver" in window) {
+    revealEls.forEach(function (el) {
+      el.classList.add("reveal");
+    });
+
+    const revealSpy = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            revealSpy.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+    );
+
+    revealEls.forEach(function (el) {
+      revealSpy.observe(el);
+    });
+  }
 })();
