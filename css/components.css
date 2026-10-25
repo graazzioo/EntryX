@@ -153,16 +153,12 @@ body.menu-open {
 
 /* ================= HERO ================= */
 .hero {
-  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3rem, 7vw, 5.5rem);
   position: relative;
-  overflow: hidden;
-  background: radial-gradient(60% 50% at 85% 20%, rgba(198, 255, 61, 0.09), transparent 70%);
-}
-
-.hero-grid {
-  display: grid;
-  gap: 2.5rem;
+  min-height: clamp(480px, 85vh, 720px);
+  display: flex;
   align-items: center;
+  overflow: hidden;
+  background: var(--bg);
 }
 
 .hero h1 {
@@ -199,7 +195,7 @@ body.menu-open {
   gap: 0.5rem 1.5rem;
   margin: 2rem 0 0;
   padding: 1.25rem 0 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(244, 246, 248, 0.18);
   color: var(--muted);
   font-weight: 600;
 }
@@ -220,38 +216,47 @@ body.menu-open {
   border-radius: 50%;
 }
 
-/* Фото-блок hero с CSS-fallback (роль img не задана — блочный) */
-.hero-visual {
-  position: relative;
-  aspect-ratio: 16 / 11;
-  min-height: 220px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: linear-gradient(160deg, var(--surface-2), var(--surface));
-}
-
-.hero-visual::before {
-  content: "";
+/* Фон hero: полноширинное изображение с затемнением под текст (наложение) */
+.hero-bg {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity: 0.35;
+  z-index: 0;
 }
 
-.hero-visual img {
-  position: relative;
-  z-index: 1;
+.hero-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-@media (min-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1.15fr 0.85fr;
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 11, 15, 0.45) 0%,
+    rgba(9, 11, 15, 0.7) 55%,
+    var(--bg) 100%
+  );
+}
+
+/* Контент поверх фона */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3rem, 8vw, 5.5rem);
+  animation: hero-in 0.8s ease both;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -447,7 +452,7 @@ body.menu-open {
 
 .community__visual {
   position: relative;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 16 / 9;
   min-height: 180px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -783,4 +788,34 @@ body.menu-open {
   visibility: visible;
   transform: none;
   pointer-events: auto;
+}
+
+/* ================= АНИМАЦИИ ПОЯВЛЕНИЯ ================= */
+/* Применяются только когда JS включён (класс .js на <html>) */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+html.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Каскадная задержка для карточек в сетках */
+html.js .grid > .card:nth-child(2) {
+  transition-delay: 0.06s;
+}
+
+html.js .grid > .card:nth-child(3) {
+  transition-delay: 0.12s;
+}
+
+html.js .grid > .card:nth-child(4) {
+  transition-delay: 0.18s;
+}
+
+html.js .grid > .card:nth-child(5) {
+  transition-delay: 0.24s;
 }

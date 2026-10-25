@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>document.documentElement.classList.add("js");</script>
   <title>EntryX — компьютерный клуб для тех, кто играет всерьёз</title>
   <meta name="description" content="EntryX — компьютерный клуб: игровые зоны, командные места, тарифы и турнирная атмосфера. CS2, Valorant, Dota 2, League of Legends.">
   <meta name="theme-color" content="#090B0F">
@@ -94,31 +95,30 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div>
-          <h1 id="hero-title">Твоя игра.<br>Твои <em>правила.</em></h1>
-          <p class="lead">EntryX — компьютерный клуб для школьников, студентов и всех, кто играет в CS2, Valorant, Dota 2 и League of Legends. Приходи один или командой.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#tariffs">Выбрать тариф</a>
-            <a class="btn btn-ghost" href="#about">Исследовать клуб</a>
-          </div>
-          <ul class="facts" aria-label="Коротко о клубе">
-            <li>Мощное железо</li>
-            <li>Комфортные зоны</li>
-            <li>Играй с командой</li>
-          </ul>
+      <div class="hero-bg" aria-hidden="true">
+        <img
+          src="images/hero-1200.jpg"
+          srcset="images/hero-480.jpg 480w,
+                  images/hero-768.jpg 768w,
+                  images/hero-1200.jpg 1200w,
+                  images/hero-1600.jpg 1600w"
+          sizes="100vw"
+          alt=""
+          width="1600" height="900"
+          loading="eager" fetchpriority="high" decoding="async">
+      </div>
+      <div class="wrap hero-content">
+        <h1 id="hero-title">Твоя игра.<br>Твои <em>правила.</em></h1>
+        <p class="lead">EntryX — компьютерный клуб для школьников, студентов и всех, кто играет в CS2, Valorant, Dota 2 и League of Legends. Приходи один или командой.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tariffs">Выбрать тариф</a>
+          <a class="btn btn-ghost" href="#about">Исследовать клуб</a>
         </div>
-        <div class="hero-visual" role="img" aria-label="Игровой зал компьютерного клуба EntryX с рядами мониторов">
-          <img
-            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"
-            srcset="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=480&q=75 480w,
-                    https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=768&q=75 768w,
-                    https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80 900w"
-            sizes="(min-width: 900px) 42vw, 100vw"
-            alt="Игровой зал EntryX с рядами мониторов"
-            width="900" height="620"
-            loading="eager" fetchpriority="high" decoding="async">
-        </div>
+        <ul class="facts" aria-label="Коротко о клубе">
+          <li>Мощное железо</li>
+          <li>Комфортные зоны</li>
+          <li>Играй с командой</li>
+        </ul>
       </div>
     </section>
 
@@ -159,22 +159,22 @@
       <div class="wrap">
         <div class="sec-head">
           <h2 id="zones-title">Игровые зоны</h2>
-          <p>Три формата на выбор: STANDART для повседневной игры, VIP для максимального комфорта и SQUAD, чтобы играть командой до пяти человек.</p>
+          <p>Три формата на выбор: STANDARD для повседневной игры, VIP для максимального комфорта и SQUAD, чтобы играть командой до пяти человек.</p>
         </div>
         <div class="grid cols-3">
           <article class="card zone">
             <div class="zone-media" aria-hidden="true">
               <img
-                src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=75"
-                srcset="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=75 400w,
-                        https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=75 700w"
+                src="images/zone-std-400.jpg"
+                srcset="images/zone-std-400.jpg 400w,
+                        images/zone-std-700.jpg 700w"
                 sizes="(min-width: 900px) 33vw, 100vw"
                 alt=""
-                width="700" height="440"
+                width="700" height="470"
                 loading="lazy" decoding="async">
             </div>
             <div class="zone-body">
-              <h3>STANDART</h3>
+              <h3>STANDARD</h3>
               <p>Основной зал для рейтинговых матчей и ежедневной игры.</p>
               <span class="meta">Формат: соло или дуо</span>
               <a class="btn btn-ghost" href="#tariffs">Смотреть тарифы</a>
@@ -183,12 +183,12 @@
           <article class="card zone">
             <div class="zone-media" aria-hidden="true">
               <img
-                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=75"
-                srcset="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=75 400w,
-                        https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=75 700w"
+                src="images/zone-vip-400.jpg"
+                srcset="images/zone-vip-400.jpg 400w,
+                        images/zone-vip-700.jpg 700w"
                 sizes="(min-width: 900px) 33vw, 100vw"
                 alt=""
-                width="700" height="440"
+                width="700" height="470"
                 loading="lazy" decoding="async">
             </div>
             <div class="zone-body">
@@ -201,12 +201,12 @@
           <article class="card zone">
             <div class="zone-media" aria-hidden="true">
               <img
-                src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=75"
-                srcset="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=75 400w,
-                        https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=700&q=75 700w"
+                src="images/zone-squad-400.jpg"
+                srcset="images/zone-squad-400.jpg 400w,
+                        images/zone-squad-700.jpg 700w"
                 sizes="(min-width: 900px) 33vw, 100vw"
                 alt=""
-                width="700" height="440"
+                width="700" height="467"
                 loading="lazy" decoding="async">
             </div>
             <div class="zone-body">
@@ -344,13 +344,13 @@
       <div class="wrap">
         <div class="community__visual" aria-hidden="true">
           <img
-            src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=600&q=75"
-            srcset="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=600&q=75 600w,
-                    https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=900&q=75 900w,
-                    https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80 1200w"
+            src="images/community-600.jpg"
+            srcset="images/community-600.jpg 600w,
+                    images/community-900.jpg 900w,
+                    images/community-1168.jpg 1168w"
             sizes="100vw"
             alt=""
-            width="1200" height="514"
+            width="1168" height="784"
             loading="lazy" decoding="async">
         </div>
         <div class="community__content">
@@ -441,7 +441,7 @@
           <div class="field">
             <label for="zoneSel">Зона</label>
             <select id="zoneSel" name="zone">
-              <option value="STANDART">STANDART</option>
+              <option value="STANDARD">STANDARD</option>
               <option value="VIP">VIP</option>
               <option value="SQUAD">SQUAD</option>
             </select>
